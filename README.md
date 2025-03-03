@@ -4,7 +4,7 @@
 
 ### Configuração do banco de dados
 
-- Para configurar a conexão com o banco de dados, vá até o arquivo `appsettings.json` e altere a string de conexão.
+- Para configurar a conexão com o banco de dados, vá até o arquivo `ConnectionLibrary/appsettings.json` e altere a string de conexão.
 
 ### Publicação
 

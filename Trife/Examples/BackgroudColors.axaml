@@ -1,0 +1,155 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth=""
+             x:Class="Trife.Examples.BackgroudColors">
+
+	<Border>
+		<UniformGrid Columns="3" HorizontalAlignment="Stretch">
+			<TextBlock Background="AliceBlue"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="AntiqueWhite"         Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Aqua"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Aquamarine"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Azure"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Beige"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Bisque"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Black"                Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="BlanchedAlmond"       Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Blue"                 Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="BlueViolet"           Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Brown"                Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="BurlyWood"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="CadetBlue"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Chartreuse"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Chocolate"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Coral"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="CornflowerBlue"       Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Cornsilk"             Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Crimson"              Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Cyan"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkBlue"             Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkCyan"             Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkGoldenrod"        Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkGray"             Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkGreen"            Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkKhaki"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkMagenta"          Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkOliveGreen"       Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkOrange"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkOrchid"           Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkRed"              Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkSalmon"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkSeaGreen"         Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkSlateBlue"        Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkSlateGray"        Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkTurquoise"        Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DarkViolet"           Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DeepPink"             Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DeepSkyBlue"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DimGray"              Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="DodgerBlue"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Firebrick"            Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="FloralWhite"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="ForestGreen"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Fuchsia"              Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Gainsboro"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="GhostWhite"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Gold"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Goldenrod"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Gray"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Green"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="GreenYellow"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Honeydew"             Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="HotPink"              Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="IndianRed"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Indigo"               Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Ivory"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Khaki"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Lavender"             Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LavenderBlush"        Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LawnGreen"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LemonChiffon"         Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightBlue"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightCoral"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightCyan"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightGoldenrodYellow" Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightGray"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightGreen"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightPink"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightSalmon"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightSeaGreen"        Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightSkyBlue"         Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightSlateGray"       Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightSteelBlue"       Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LightYellow"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Lime"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="LimeGreen"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Linen"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<!--Magenta -> Fuchsia-->
+			<TextBlock Background="Magenta"              Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Maroon"               Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumAquamarine"     Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumBlue"           Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumOrchid"         Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumPurple"         Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumSeaGreen"       Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumSlateBlue"      Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumSpringGreen"    Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumTurquoise"      Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MediumVioletRed"      Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MidnightBlue"         Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MintCream"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="MistyRose"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Moccasin"             Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="NavajoWhite"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Navy"                 Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="OldLace"              Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Olive"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="OliveDrab"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Orange"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="OrangeRed"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Orchid"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="PaleGoldenrod"        Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="PaleGreen"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="PaleTurquoise"        Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="PaleVioletRed"        Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="PapayaWhip"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="PeachPuff"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Peru"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Pink"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Plum"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="PowderBlue"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Purple"               Foreground="White" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Red"                  Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="RosyBrown"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="RoyalBlue"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SaddleBrown"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Salmon"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SandyBrown"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SeaGreen"             Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SeaShell"             Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Sienna"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Silver"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SkyBlue"              Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SlateBlue"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SlateGray"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Snow"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SpringGreen"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="SteelBlue"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Tan"                  Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Teal"                 Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Thistle"              Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Tomato"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Transparent"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Turquoise"            Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Violet"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Wheat"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="White"                Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="WhiteSmoke"           Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="Yellow"               Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+			<TextBlock Background="YellowGreen"          Foreground="Black" Text="{Binding $self.Background}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+		</UniformGrid>
+	</Border>
+	
+</UserControl>

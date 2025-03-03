@@ -1,0 +1,148 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Trife.Views.SubViews.ViewAvaliacao"
+			 Unloaded="PageUnload">
+
+	<!--Template-->
+	<UserControl.Resources>
+
+		<!-- DataTemplate já existente -->
+		<DataTemplate x:Key="MachineTemplate">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<TextBlock
+					Text="{Binding Name}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">					
+				</TextBlock>
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate x:Key="MachineIndicatorTemplate">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+				<TextBlock
+					Text="{Binding Name}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">					
+				</TextBlock>
+			</StackPanel>
+		</DataTemplate>
+
+	</UserControl.Resources>
+
+	<Border BorderBrush="Green" BorderThickness="0" Margin="0">
+		<Grid ColumnDefinitions="3*,4*,3*" RowDefinitions="Auto,*,Auto" ShowGridLines="False">
+
+			<!--Cabeçalho-->
+			<Border Background="Gray" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,0,1">
+				<StackPanel VerticalAlignment="Center">
+					<TextBlock
+						Margin="0,0,0,0"
+						Text="Avaliação"
+						FontSize="20"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center">
+					</TextBlock>
+				</StackPanel>
+			</Border>
+
+			<!-- Lista de maquinas -->
+			<ScrollViewer Grid.Column="0" Grid.Row="1" Margin="10,0,0,0">
+				<Border BorderBrush="Black" BorderThickness="0,0,1,0">
+					<StackPanel Margin="0,0,10,0">
+						<TextBlock Text="Lista de maquinas ativas" HorizontalAlignment="Center"/>
+						<ListBox
+							IsEnabled="True"
+							BorderBrush="Black"
+							BorderThickness="1"
+							Background="LightGray"
+							HorizontalAlignment="Stretch"
+							ItemsSource="{Binding Machines}"
+							SelectedItem="{Binding SelectedMachine}"
+							ItemTemplate="{StaticResource MachineTemplate}">
+						</ListBox>
+					</StackPanel>
+				</Border>
+			</ScrollViewer>
+
+			<!-- Lista de indicadores -->
+			<ScrollViewer Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
+				<Border BorderBrush="Black" BorderThickness="0,0,1,0">
+					<StackPanel Spacing="5">
+						<TextBlock Text="Lista de Indicadores Cadastrados" HorizontalAlignment="Center"/>
+
+						<!-- Lista Ambiental -->
+						<StackPanel Margin="10,0,10,0">
+							<TextBlock Text="Ambiental"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding AmbientalMachineIndicators}"
+								SelectedItem="{Binding SelectedAmbientalIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}">
+							</ListBox>
+						</StackPanel>
+
+						<!-- Lista Social -->
+						<StackPanel Margin="10,0,10,0">
+							<TextBlock Text="Social"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding SocialMachineIndicators}"
+								SelectedItem="{Binding SelectedSocialIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}">
+							</ListBox>
+						</StackPanel>
+
+						<!-- Lista Econômica -->
+						<StackPanel Margin="10,0,10,0">
+							<TextBlock Text="Econômico"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding EconomicalMachineIndicators}"
+								SelectedItem="{Binding SelectedEconomicalIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}">
+							</ListBox>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+			</ScrollViewer>
+
+			<!--Botoes e inputs-->
+			<Border Grid.Column="2" Grid.Row="1"  BorderBrush="Black" BorderThickness="0,0,1,0">
+				<Grid Margin="10,0,10,10"
+					  ColumnDefinitions="*" RowDefinitions="*,*">
+
+					<StackPanel Grid.Row="0" Spacing="5">
+						<TextBlock Text="Habilitado"/>
+						<CheckBox IsChecked="{Binding IndicatorIsEnabled}"
+								  IsEnabled="{Binding EnableIndicatorEdit}">
+						</CheckBox>
+
+						<TextBlock Text="Valor do indicador"/>
+						<TextBox Text="{Binding IndicatorValue}" Watermark="Valor"
+								 IsEnabled="{Binding EnableIndicatorEdit}">
+						</TextBox>
+					</StackPanel>
+
+					<UniformGrid Columns="2" Grid.Row="1" VerticalAlignment="Bottom">
+						<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Salvar" Command="{Binding SaveIndicatorCommand}"/>
+						<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Limpar" Command="{Binding ClearIndicatorCommand}"/>
+					</UniformGrid>
+				</Grid>
+			</Border>
+			
+		</Grid>
+	</Border>
+
+</UserControl>

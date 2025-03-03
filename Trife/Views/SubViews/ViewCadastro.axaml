@@ -1,0 +1,451 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Trife.Views.SubViews.ViewCadastro"
+			 Unloaded="PageUnload">
+
+	<!--Template-->
+	<UserControl.Resources>
+
+		<!-- DataTemplate já existente -->
+		<DataTemplate x:Key="MachineTemplate">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<TextBlock
+					Text="{Binding Name}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">
+				</TextBlock>
+			</StackPanel>
+		</DataTemplate>
+
+		<DataTemplate x:Key="MachineIndicatorTemplate">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+				<TextBlock
+					Text="{Binding Name}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">
+				</TextBlock>
+			</StackPanel>
+		</DataTemplate>
+
+	</UserControl.Resources>
+
+	<Border Margin="0">
+		<Grid ColumnDefinitions="35*, 65*" RowDefinitions="Auto,*" ShowGridLines="False">
+
+			<!--Header-->
+			<Border Grid.Column="0" Grid.ColumnSpan="3" Background="Gray" BorderBrush="Black" BorderThickness="0,0,0,1">
+				<TextBlock
+					Text="Cadastro"
+					Grid.ColumnSpan="3"
+					FontSize="20"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Margin="0,10,0,10">					
+				</TextBlock>
+			</Border>
+
+			<!--Controles principais-->
+			<Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,1,0" Background="Silver">
+				<StackPanel Name="MainController" Margin="10,10,10,0" IsVisible="{Binding StackMainControllerVisible}">
+					<TextBlock Text="Selecione a operação desejada" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Máquinas" Command="{Binding MachineSelectVisibleCommand}" CommandParameter="MachineControllerVisible"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Indicadores" Command="{Binding MachineIndicatorSelectVisibleCommand}" CommandParameter="MachineIndicatorControllerVisible"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+			</Border>
+
+			<!--Controles-->
+			<UniformGrid Grid.Column="0" Grid.Row="1" Columns="1" Margin="10,10,10,0">
+
+				<!--Controles iniciais da maquina-->
+				<StackPanel Name="MachineController" IsVisible="{Binding StackMachineControllerVisible}">
+					<TextBlock Text="Selecione a operação desejada" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Cadastrar Nova Máquina" Command="{Binding MachineSelectVisibleCommand}" CommandParameter="MachineCadastroVisible"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Editar Máquina Existente" Command="{Binding MachineSelectVisibleCommand}" CommandParameter="MachineEditVisible"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Excluir Máquina Existente" Command="{Binding MachineSelectVisibleCommand}" CommandParameter="MachineDeleteVisible"/>
+
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Voltar" Command="{Binding MachineReturnVisibleCommand}" CommandParameter="MachineControllerReturn"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+
+				<!--Cadastro de maquina-->
+				<StackPanel Name="MachineCadastro" IsVisible="{Binding StackMachineCadastroVisible}">
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Salvar Nova Máquina" Command="{Binding CreateMachineCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Adicionar Indicador" Command="{Binding AddMachineIndicatorCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Remover Indicador" Command="{Binding RemoveMachineIndicatorCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Limpar" Command="{Binding ClearMachineCommand}"/>
+
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Voltar" Command="{Binding MachineReturnVisibleCommand}" CommandParameter="MachineCadastroReturn"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+
+				<!--Edição de maquina-->
+				<StackPanel Name="MachineEdit" IsVisible="{Binding StackMachineEditVisible}">
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Editar Máquina" Command="{Binding EditMachineCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Adicionar Indicador" Command="{Binding AddMachineIndicatorCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Remover Indicador" Command="{Binding RemoveMachineIndicatorCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Limpar" Command="{Binding ClearMachineCommand}"/>
+
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Voltar" Command="{Binding MachineReturnVisibleCommand}" CommandParameter="MachineEditReturn"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+
+				<!--Exclusão de maquina-->
+				<StackPanel Name="MachineDelete" IsVisible="{Binding StackMachineDeleteVisible}">
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Excluir" Command="{Binding DeleteMachineCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Limpar" Command="{Binding ClearMachineCommand}"/>
+
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Voltar" Command="{Binding MachineReturnVisibleCommand}" CommandParameter="MachineDeleteReturn"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+
+				<!--Controles iniciais dos indicadores-->
+				<StackPanel Name="MachineIndicatorController" IsVisible="{Binding StackMachineIndicatorControllerVisible}">
+					<TextBlock Text="Selecione a operação desejada" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Cadastrar Novo Indicador" Command="{Binding MachineIndicatorSelectVisibleCommand}" CommandParameter="MachineIndicatorCadastroVisible"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Editar Indicator Existente" Command="{Binding MachineIndicatorSelectVisibleCommand}" CommandParameter="MachineIndicatorEditVisible"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Excluir Indicador Existente" Command="{Binding MachineIndicatorSelectVisibleCommand}" CommandParameter="MachineIndicatorDeleteVisible"/>
+
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Voltar" Command="{Binding MachineIndicatorReturnVisibleCommand}" CommandParameter="MachineIndicatorControllerReturn"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+
+				<!--Cadastro de indicador-->
+				<StackPanel Name="MachineIndicatorCadastro" IsVisible="{Binding StackMachineIndicatorCadastroVisible}">
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Salvar" Command="{Binding CreateMachineIndicatorCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Limpar" Command="{Binding ClearMachineIndicatorCommand}"/>
+
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Voltar" Command="{Binding MachineIndicatorReturnVisibleCommand}" CommandParameter="MachineIndicatorCadastroReturn"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+
+				<!--Edição de indicador-->
+				<StackPanel Name="MachineIndicatorEdit" IsVisible="{Binding StackMachineIndicatorEditVisible}">
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Salvar" Command="{Binding EditMachineIndicatorCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Limpar" Command="{Binding ClearMachineIndicatorCommand}"/>
+
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Voltar" Command="{Binding MachineIndicatorReturnVisibleCommand}" CommandParameter="MachineIndicatorEditReturn"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+
+				<!--Exclusão de indicador-->
+				<StackPanel Name="MachineIndicatorDelete" IsVisible="{Binding StackMachineIndicatorDeleteVisible}">
+					<UniformGrid Columns="1">
+						<StackPanel Spacing="10">
+							<Button  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Excluir" Command="{Binding DeleteMachineIndicatorCommand}"/>
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Limpar" Command="{Binding ClearMachineIndicatorCommand}"/>
+
+							<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Voltar" Command="{Binding MachineIndicatorReturnVisibleCommand}" CommandParameter="MachineIndicatorDeleteReturn"/>
+						</StackPanel>
+					</UniformGrid>
+				</StackPanel>
+
+			</UniformGrid>
+
+			<!--Inputs-->
+			<UniformGrid Grid.Column="1" Grid.Row="1" Columns="1" Margin="10,10,10,0">
+
+				<!--Cadastro de maquina-->
+				<Grid RowDefinitions="Auto, *" ColumnDefinitions="*, *" Name="MachineCadastroInput" IsVisible="{Binding StackMachineCadastroVisible}" ShowGridLines="False">
+					<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+						<TextBlock Text="Nome"/>
+						<AutoCompleteBox
+							Text="{Binding NewMachineName}"
+							Watermark="Nome da máquina"
+							ItemsSource="{Binding NewMachineNameSource}"
+							FilterMode="Contains">
+						</AutoCompleteBox>
+
+						<TextBlock
+							Text="Uma máquina com este nome já foi cadastrada!"
+							IsVisible="{Binding MachineNameNotAvailable}"
+							Foreground="Red"
+							FontSize="12">							
+						</TextBlock>
+
+						<StackPanel Orientation="Horizontal" Spacing="10">
+							<TextBlock Text="Ativa" VerticalAlignment="Center"/>
+							<CheckBox IsChecked="{Binding NewMachineIsEnabled}"/>
+						</StackPanel>
+					</StackPanel>
+
+					<!-- Listas de indicadores da maquina-->
+					<ScrollViewer AllowAutoHide="True" Grid.Row="1" Grid.Column="0">
+						<StackPanel Spacing="5" Grid.Column="0" Margin="0,0,10,0">
+							<TextBlock Text="Indicadores da máquina"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding SelectedMachineMachineIndicators}"
+								SelectedItem="{Binding SelectedMachineSelectedMachineIndicators}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}"
+								IsEnabled="True">
+							</ListBox>
+						</StackPanel>
+					</ScrollViewer>
+
+					<!-- Listas de indicadores disponiveis -->
+					<ScrollViewer AllowAutoHide="True" Grid.Row="1" Grid.Column="1">
+						<StackPanel Spacing="5" Margin="10,0,0,0">
+							<TextBlock Text="Lista de indicadores cadastrados" HorizontalAlignment="Center"/>
+
+							<TextBlock Text="Ambiental"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding AmbientalMachineIndicators}"
+								SelectedItem="{Binding SelectedAmbientalIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}"
+								IsEnabled="{Binding CanSelectMachineIndicators}">
+							</ListBox>
+
+							<TextBlock Text="Social"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding SocialMachineIndicators}"
+								SelectedItem="{Binding SelectedSocialIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}"
+								IsEnabled="{Binding CanSelectMachineIndicators}">
+							</ListBox>
+
+							<TextBlock Text="Econômico"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding EconomicalMachineIndicators}"
+								SelectedItem="{Binding SelectedEconomicalIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}"
+								IsEnabled="{Binding CanSelectMachineIndicators}">
+							</ListBox>
+						</StackPanel>
+					</ScrollViewer>
+				</Grid>
+
+				<!--Edição de maquina-->
+				<Grid RowDefinitions="Auto, *" ColumnDefinitions="*, *" Name="MachineEditInput" IsVisible="{Binding StackMachineEditVisible}" ShowGridLines="False">
+					<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+						<TextBlock Text="Selecione a máquina para editar"/>
+						<ComboBox
+							HorizontalAlignment="Stretch"
+							ItemsSource="{Binding Machines}"
+							SelectedItem="{Binding SelectedMachine}"
+							ItemTemplate="{StaticResource MachineTemplate}">
+						</ComboBox>
+
+						<TextBlock Text="Nome"/>
+						<TextBox Text="{Binding NewMachineName}" Watermark="Nome da maquina"/>
+
+						<StackPanel Orientation="Horizontal" Spacing="10">
+							<TextBlock Text="Ativo" VerticalAlignment="Center"/>
+							<CheckBox IsChecked="{Binding NewMachineIsEnabled}"/>
+						</StackPanel>
+					</StackPanel>
+
+					<!-- Listas de indicadores da maquina-->
+					<ScrollViewer AllowAutoHide="True" Grid.Row="1" Grid.Column="0">
+						<StackPanel Spacing="5" Grid.Column="0" Margin="0,0,10,0">
+							<TextBlock Text="Indicadores da máquina"/>
+							<ScrollViewer AllowAutoHide="True" VerticalScrollBarVisibility="Auto">
+								<ListBox
+									BorderBrush="Black"
+									BorderThickness="1"
+									Background="LightGray"
+									HorizontalAlignment="Stretch"
+									ItemsSource="{Binding SelectedMachineMachineIndicators}"
+									SelectedItem="{Binding SelectedMachineSelectedMachineIndicators}"
+									ItemTemplate="{StaticResource MachineIndicatorTemplate}"
+									IsEnabled="True">
+								</ListBox>
+							</ScrollViewer>
+						</StackPanel>
+					</ScrollViewer>
+
+					<!-- Listas de indicadores disponiveis -->
+					<ScrollViewer AllowAutoHide="True" Grid.Row="1" Grid.Column="1">						
+						<StackPanel Spacing="5" Margin="10,0,0,0">
+							<TextBlock Text="Lista de indicadores cadastrados" HorizontalAlignment="Center"/>
+
+							<TextBlock Text="Ambiental"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding AmbientalMachineIndicators}"
+								SelectedItem="{Binding SelectedAmbientalIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}"
+								IsEnabled="{Binding CanSelectMachineIndicators}">
+							</ListBox>
+
+							<TextBlock Text="Social"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding SocialMachineIndicators}"
+								SelectedItem="{Binding SelectedSocialIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}"
+								IsEnabled="{Binding CanSelectMachineIndicators}">
+							</ListBox>
+
+							<TextBlock Text="Econômico"/>
+							<ListBox
+								BorderBrush="Black"
+								BorderThickness="1"
+								Background="LightGray"
+								HorizontalAlignment="Stretch"
+								ItemsSource="{Binding EconomicalMachineIndicators}"
+								SelectedItem="{Binding SelectedEconomicalIndicator}"
+								ItemTemplate="{StaticResource MachineIndicatorTemplate}"
+								IsEnabled="{Binding CanSelectMachineIndicators}">
+							</ListBox>
+
+						</StackPanel>
+					</ScrollViewer>
+				</Grid>
+
+				<!--Exclusão da maquina-->
+				<StackPanel Name="MachineDeleteInput" IsVisible="{Binding StackMachineDeleteVisible}">
+					<TextBlock Text="Selecione a máquina"/>
+					<ComboBox
+						HorizontalAlignment="Stretch"
+						ItemsSource="{Binding Machines}"
+						SelectedItem="{Binding SelectedMachine}"
+						ItemTemplate="{StaticResource MachineTemplate}">
+					</ComboBox>
+				</StackPanel>
+
+				<!--Cadastro de indicador-->
+				<Grid RowDefinitions="Auto, *" ColumnDefinitions="*" Name="MachineIndicatorCadastroInput" IsVisible="{Binding StackMachineIndicatorCadastroVisible}">
+					<StackPanel Grid.Row="0" Grid.Column="0">
+						<TextBlock Text="Novo indicador"/>
+						<AutoCompleteBox
+							Text="{Binding NewMachineIndicatorName}"
+							Watermark="Nome do indicador"
+							ItemsSource="{Binding NewMachineIndicatorNameSource}"
+							FilterMode="Contains">
+						</AutoCompleteBox>
+
+						<TextBlock Text="Um indicador com este nome já foi cadastrado!" IsVisible="{Binding MachineIndicatorNameNotAvailable}" Foreground="Red" FontSize="12"/>
+
+						<StackPanel Orientation="Horizontal" Spacing="10">
+							<TextBlock Text="Ativo" VerticalAlignment="Center"/>
+							<CheckBox IsChecked="{Binding NewMachineIndicatorIsEnabled}"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Vertical">
+							<TextBlock Text="Unidade de medida" VerticalAlignment="Center"/>
+							<TextBox Text="{Binding NewMachineIndicatorUnit}" Watermark="Unidade de medida"/>
+						</StackPanel>
+					</StackPanel>
+
+					<StackPanel Grid.Row="1" Grid.Column="0">
+						<TextBlock Text="Tipo de indicador"/>
+						<ComboBox
+							ItemsSource="{Binding Types}"
+							SelectedItem="{Binding NewMachineIndicatorType}"
+							HorizontalAlignment="Stretch">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+				</Grid>
+
+				<!--Edição de indicador-->
+				<Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*" Name="MachineIndicatorEditInput" IsVisible="{Binding StackMachineIndicatorEditVisible}">
+					<StackPanel Grid.Row="0" Grid.Column="0">
+						<TextBlock Text="Selecione um indicador"/>
+						<ComboBox
+							HorizontalAlignment="Stretch"
+							ItemsSource="{Binding MachineIndicators}"
+							SelectedItem="{Binding SelectedIndicator}"
+							ItemTemplate="{StaticResource MachineIndicatorTemplate}">
+						</ComboBox>
+
+						<TextBlock Text="Nome"/>
+						<TextBox Text="{Binding NewMachineIndicatorName}" Watermark="Nome do indicador"/>
+
+						<StackPanel Orientation="Vertical">
+							<TextBlock Text="Unidade de medida" VerticalAlignment="Center"/>
+							<TextBox Text="{Binding NewMachineIndicatorUnit}" Watermark="Unidade de medida"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Spacing="10">
+							<TextBlock Text="Ativo" VerticalAlignment="Center"/>
+							<CheckBox IsChecked="{Binding NewMachineIsEnabled}"/>
+						</StackPanel>
+					</StackPanel>
+
+					<StackPanel Grid.Row="1" Grid.Column="0">
+						<TextBlock Text="Tipo de indicador"/>
+						<ComboBox
+							ItemsSource="{Binding Types}"
+							SelectedItem="{Binding NewMachineIndicatorType}"
+							HorizontalAlignment="Stretch">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding}"/>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+				</Grid>
+
+				<!--Exclusão de indicador-->
+				<Grid RowDefinitions="Auto" ColumnDefinitions="*" Name="MachineIndicatorDeleteInput" IsVisible="{Binding StackMachineIndicatorDeleteVisible}">
+					<StackPanel Grid.Row="0" Grid.Column="0">
+						<TextBlock Text="Selecione o indicador"/>
+						<ComboBox
+							HorizontalAlignment="Stretch"
+							ItemsSource="{Binding MachineIndicators}"
+							SelectedItem="{Binding SelectedIndicator}"
+							ItemTemplate="{StaticResource MachineIndicatorTemplate}">
+						</ComboBox>
+					</StackPanel>
+				</Grid>
+
+			</UniformGrid>
+
+		</Grid>
+	</Border>
+</UserControl>

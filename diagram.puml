@@ -1,0 +1,580 @@
+@startuml diagram
+
+' --------------------------------------------- OBS ---------------------------------------------
+' --> = Association - if the class instantiates another class or uses the class as a return type
+' ..> = Dependency - if the class uses another class as a parameter for a function or method
+
+' --> Depends on
+' <-- Is depended on
+' ..> Uses
+' <.. Is used by
+
+' A --> B: A depends on B
+' A <.. B: A is used by B
+' A ..> B: A uses B
+' A <-- B: A is depended on by B
+' --------------------------------------------- /OBS ---------------------------------------------
+
+' --------------------------------------------- ConnectionLibrary ---------------------------------------------
+
+' ---------- Context ----------
+class LibraryContext {
+    + IConfiguration Configuration
+
+    + LibraryContext()
+    # override void OnConfiguring(DbContextOptionsBuilder)
+}
+
+LibraryContext --> IConfiguration
+LibraryContext ..> DbContextOptionsBuilder
+LibraryContext --|> DbContext
+
+class LocalStorage <<sealed>> {
+    - static readonly string folderPath
+    - static readonly string filePath
+    - static readonly JsonSerializerOptions options
+
+    + static List<Machine> GetMachines()
+    + static bool SaveMachine(Machine)
+    + static bool UpdateMachine(Machine)
+    + static bool DeleteMachine(Machine)
+
+    + static List<MachineIndicator> GetMachineIndicators()
+    + static bool SaveMachineIndicator(MachineIndicator)
+    + static bool UpdateMachineIndicator(MachineIndicator)
+    + static bool DeleteMachineIndicator(MachineIndicator)
+
+    + static List<MachineIndicatorValue> GetMachineIndicatorValues()
+    + static List<MachineIndicatorValue> GetMachineIndicatorValuesByMachineId(int)
+    + static List<MachineIndicatorValue> GetMachineIndicatorValuesByMachineIdMachineIndicatorId(int, int)
+
+    + static bool SaveMachineIndicatorValue(MachineIndicatorValue)
+    + static bool UpdateMachineIndicatorValue(MachineIndicatorValue)
+    + static bool DeleteMachineIndicatorValue(MachineIndicatorValue)
+
+    + static ObservableCollection<MachineIndicator> CheckForBasicIndicators(List<MachineIndicator>)
+
+    - static string GetFolderPath()
+    - static string GetFilePath()
+    - static LocalStorageObject GetLocalStorage()
+
+    + class LocalStorageObject
+}
+
+LocalStorage --> JsonSerializerOptions
+LocalStorage ..> Machine
+LocalStorage ..> MachineIndicator
+LocalStorage ..> MachineIndicatorValue
+LocalStorage ..> LocalStorageObject
+
+class MachineContext {
+    - readonly string? connectionString
+    - readonly SqlConnection connection
+
+    + MachineContext(IConfiguration)
+
+    + bool ConnectionStablished()
+
+    + List<Machine> GetMachines()
+    + bool SaveMachine(Machine)
+    + bool UpdateMachine(Machine)
+    + bool DeleteMachine(Machine)
+
+    + List<MachineIndicator> GetMachineIndicators()
+    + bool SaveMachineIndicator(MachineIndicator)
+    + bool UpdateMachineIndicator(MachineIndicator)
+    + bool DeleteMachineIndicator(MachineIndicator)
+
+    + List<MachineIndicatorValue> GetMachineIndicatorValues()
+    + List<MachineIndicatorValue> GetMachineIndicatorValuesByMachineIdMachineIndicatorId(MachineIndicatorValue)
+    + List<MachineIndicatorValue> GetMachineIndicatorValuesByMachineIndicatorId(MachineIndicatorValue)
+
+    + bool SaveMachineIndicatorValue(MachineIndicatorValue)
+    + bool UpdateMachineIndicatorValue(MachineIndicatorValue)
+    + bool DeleteMachineIndicatorValue(MachineIndicatorValue)
+}
+
+MachineContext --> SqlConnection
+MachineContext ..> IConfiguration
+MachineContext ..> Machine
+MachineContext ..> MachineIndicator
+MachineContext ..> MachineIndicatorValue
+
+class SavingContext <<sealed>> {
+    - readonly bool isConnected
+    - readonly MachineContext machineContext
+
+    + string ErrorMessage
+
+    + SavingContext(IConfiguration)
+
+    + bool IsConnected()
+    + bool SyncData()
+    + bool SyncMachines(List<Machine>, List<Machine>)
+    + bool SyncMachineIndicators(List<MachineIndicator>, List<MachineIndicator>)
+    + bool SyncMachineIndicatorValues(List<MachineIndicatorValue>, List<MachineIndicatorValue>)
+}
+
+SavingContext --> MachineContext
+SavingContext ..> IConfiguration
+SavingContext ..> Machine
+SavingContext ..> MachineIndicator
+SavingContext ..> MachineIndicatorValue
+' ---------- /Context ----------
+
+' ---------- Context.TableFunctions ----------
+class MachineTable <<static>> {
+    + static List<Machine> GetMachines(SqlConnection)
+    + static bool SaveMachine(SqlConnection, SqlTransaction, Machine)
+    + static bool UpdateMachine(SqlConnection, SqlTransaction, Machine)
+    + static bool DeleteMachine(SqlConnection, SqlTransaction, Machine)
+}
+
+MachineTable ..> Machine
+MachineTable ..> SqlConnection
+MachineTable ..> SqlTransaction
+
+class MachineIndicatorTable <<static>> {
+    + static List<MachineIndicator> GetMachineIndicators(SqlConnection)
+    + static bool SaveMachineIndicator(SqlConnection, SqlTransaction, MachineIndicator)
+    + static bool UpdateMachineIndicator(SqlConnection, SqlTransaction, MachineIndicator)
+    + static bool DeleteMachineIndicator(SqlConnection, SqlTransaction, MachineIndicator)
+}
+
+MachineIndicatorTable ..> MachineIndicator
+MachineIndicatorTable ..> SqlConnection
+MachineIndicatorTable ..> SqlTransaction
+
+class MachineIndicatorValuesTable <<static>> {
+    + static List<MachineIndicatorValue> GetMachineIndicatorValues(SqlConnection)
+    + static List<MachineIndicatorValue> GetMachineIndicatorValuesByMachineIdMachineIndicatorId(SqlConnection, Guid, Guid)
+    + static List<MachineIndicatorValue> GetMachineIndicatorValuesByMachineIndicatorId(SqlConnection, Guid)
+    + static bool SaveMachineIndicatorValue(SqlConnection, SqlTransaction, MachineIndicatorValue)
+    + static bool UpdateMachineIndicatorValue(SqlConnection, SqlTransaction, MachineIndicatorValue)
+    + static bool DeleteMachineIndicatorValue(SqlConnection, SqlTransaction, MachineIndicatorValue)
+}
+
+MachineIndicatorValuesTable ..> MachineIndicatorValue
+MachineIndicatorValuesTable ..> SqlConnection
+MachineIndicatorValuesTable ..> SqlTransaction
+MachineIndicatorValuesTable ..> Guid
+' ---------- /Context.TableFunctions ----------
+
+' ---------- Objects ----------
+enum Tipo {
+    Ambiental
+    Social
+    Economico
+}
+
+class Machine <<sealed>>{
+    - Guid _id
+    - string _name
+    - List<MachineIndicator> _machineIndicators
+    - bool _isEnabled
+    - bool _deleted
+    - DateTime _timeStamp
+
+    + Guid Id
+    + string Name
+    + List<MachineIndicator> MachineIndicators
+    + bool IsEnabled
+    + bool Deleted
+    + DateTime TimeStamp
+
+    + Machine()
+}
+
+Machine ..> MachineIndicator
+Machine ..> Guid
+Machine ..> DateTime
+Machine --|> ReactiveObject
+
+class MachineIndicator <<sealed>> {
+    - Guid _id
+    - string _name
+    - string _unit
+    - Tipo _type
+    - bool _isEnabled
+    - bool _deleted
+    - DateTime _timeStamp
+
+    + Guid Id
+    + string Name
+    + string Unit
+    + Tipo Type
+    + bool IsEnabled
+    + bool Deleted
+    + DateTime TimeStamp
+
+    + MachineIndicator()
+}
+
+MachineIndicator ..> Guid
+MachineIndicator ..> Tipo
+MachineIndicator ..> DateTime
+MachineIndicator --|> ReactiveObject
+
+class MachineIndicatorValue <<sealed>> {
+    - Guid _id
+    - Guid _machineId
+    - Guid _machineIndicatorId
+    - double _value
+    - DateTime _date
+    - bool _isEnabled
+    - bool _deleted
+    - DateTime _timeStamp
+
+    + Guid Id
+    + Guid MachineId
+    + Guid MachineIndicatorId
+    + double Value
+    + DateTime Date
+    + bool IsEnabled
+    + bool Deleted
+    + DateTime TimeStamp
+
+    + MachineIndicatorValue()
+}
+
+MachineIndicatorValue ..> Guid
+MachineIndicatorValue ..> DateTime
+MachineIndicatorValue --|> ReactiveObject
+' ---------- /Objects ----------
+
+' ---------- Objects.Attributes ----------
+class LastModified {
+    + class LastModifiedAttribute(string)
+
+    + string Date
+}
+
+LastModified --|> Attribute
+
+class ToModify {}
+
+ToModify --|> Attribute
+' ---------- /Objects.Attributes ----------
+
+' --------------------------------------------- /ConnectionLibrary ---------------------------------------------
+
+' --------------------------------------------- Trife ---------------------------------------------
+
+' ---------- Classes.Services ----------
+class SharedService <<sealed>> {
+    - string? _message
+    - string? _errorMessage
+
+    + ObservableCollection<Machine> Machines
+    + ObservableCollection<MachineIndicator> MachineIndicators
+
+    + string? Message
+    + string? ErrorMessage
+}
+
+SharedService ..> Machine
+SharedService ..> MachineIndicator
+SharedService --|> ReactiveObject
+' ---------- /Classes.Services ----------
+
+' ---------- ViewModels ----------
+class MainViewModel {
+    - readonly SharedService sharedService
+    - readonly LibraryContext libraryContext
+
+    - readonly SavingContext? savingContext
+    - readonly CadastroViewModel? cadastroViewModel
+    - readonly AvaliacaoViewModel? avaliacaoViewModel
+    - readonly AnaliseViewModel? analiseViewModel
+
+    - string? _title
+    - string? _message
+    - string? _errorMessage
+
+    - bool _isCadastroSelected
+    - bool _isAvaliacaoSelected
+    - bool _isAnaliseSelected
+
+    - object? _selectedView
+
+    + string? Title
+    + string? Message
+    + string? ErrorMessage
+    + bool IsCadastroSelected
+    + bool IsAvaliacaoSelected
+    + bool IsAnaliseSelected
+    + object? SelectedView
+
+    + MainViewModel()
+
+    + void UnloadPage()
+}
+
+MainViewModel --> SharedService
+MainViewModel --> LibraryContext
+MainViewModel --> SavingContext
+MainViewModel --> CadastroViewModel
+MainViewModel --> AvaliacaoViewModel
+MainViewModel --> AnaliseViewModel
+MainViewModel --|> ReactiveObject
+' ---------- /ViewModels ----------
+
+' ---------- ViewModels.SubViewModels ----------
+class CadastroViewModel {
+    - readonly SharedService sharedService
+
+    - Machine? _selectedMachine
+    - MachineIndicator? _selectedMachineSelectedMachineIndicators
+    - MachineIndicator? _selectedIndicator
+
+    - MachineIndicator? _selectedAmbientalIndicator
+    - MachineIndicator? _selectedSocialIndicator
+    - MachineIndicator? _selectedEconomicalIndicator
+
+    - string _newMachineName
+    - bool _newMachineIsEnabled
+
+    - string _newMachineIndicatorName
+    - bool _newMachineIndicatorIsEnabled
+    - Tipo? _newMachineIndicatorType
+    - string? _newMachineIndicatorUnit
+
+    - bool _stackMainControllerVisible
+
+    - bool _stackMachineControllerVisible
+    - bool _stackMachineCadastroVisible
+    - bool _stackMachineEditVisible
+    - bool _stackMachineDeleteVisible
+
+    - bool _stackMachineIndicatorControllerVisible
+    - bool _stackMachineIndicatorCadastroVisible
+    - bool _stackMachineIndicatorEditVisible
+    - bool _stackMachineIndicatorDeleteVisible
+
+    - bool _canSelectMachineIndicators
+
+    - bool _machineNameNotAvailable
+    - bool _machineIndicatorNameNotAvailable
+
+    + string NewMachineName
+    + bool NewMachineIsEnabled
+
+    + string NewMachineIndicatorName
+    + bool NewMachineIndicatorIsEnabled
+    + Tipo? NewMachineIndicatorType
+    + string? NewMachineIndicatorUnit
+
+    + Machine? SelectedMachine
+    + MachineIndicator? SelectedMachineSelectedMachineIndicators
+    + MachineIndicator? SelectedIndicator
+    + MachineIndicator? SelectedAmbientalIndicator
+    + MachineIndicator? SelectedSocialIndicator
+    + MachineIndicator? SelectedEconomicalIndicator
+
+    + bool StackMainControllerVisible
+    + bool StackMachineControllerVisible
+    + bool StackMachineCadastroVisible
+    + bool StackMachineEditVisible
+    + bool StackMachineDeleteVisible
+    + bool StackMachineIndicatorControllerVisible
+    + bool StackMachineIndicatorCadastroVisible
+    + bool StackMachineIndicatorEditVisible
+    + bool StackMachineIndicatorDeleteVisible
+
+    + bool CanSelectMachineIndicators
+    + bool MachineNameNotAvailable
+    + bool MachineIndicatorNameNotAvailable
+
+    + ObservableCollection<Machine> Machines
+    + ObservableCollection<MachineIndicator> MachineIndicators
+    + ObservableCollection<MachineIndicator> SelectedMachineMachineIndicators
+    + ObservableCollection<Tipo> Types
+    + ObservableCollection<string> NewMachineNameSource
+    + ObservableCollection<string> NewMachineIndicatorNameSource
+
+    + ObservableCollection<MachineIndicator> AmbientalMachineIndicators
+    + ObservableCollection<MachineIndicator> SocialMachineIndicators
+    + ObservableCollection<MachineIndicator> EconomicalMachineIndicators
+
+    + ReactiveCommand<string, Unit> MachineSelectVisibleCommand
+    + ReactiveCommand<string, Unit> MachineReturnVisibleCommand
+
+    + ReactiveCommand<string, Unit> MachineIndicatorSelectVisibleCommand
+    + ReactiveCommand<string, Unit> MachineIndicatorReturnVisibleCommand
+
+    + ReactiveCommand<Unit, Unit> CreateMachineCommand
+    + ReactiveCommand<Unit, Unit> EditMachineCommand
+    + ReactiveCommand<Unit, Unit> DeleteMachineCommand
+    + ReactiveCommand<Unit, Unit> ClearMachineCommand
+    + ReactiveCommand<Unit, Unit> AddMachineIndicatorCommand
+    + ReactiveCommand<Unit, Unit> RemoveMachineIndicatorCommand
+
+    + ReactiveCommand<Unit, Unit> CreateMachineIndicatorCommand
+    + ReactiveCommand<Unit, Unit> EditMachineIndicatorCommand
+    + ReactiveCommand<Unit, Unit> DeleteMachineIndicatorCommand
+    + ReactiveCommand<Unit, Unit> ClearMachineIndicatorCommand
+
+    + CadastroViewModel(SharedService)
+
+    - void MachineSelectVisible(string)
+    - void MachineReturnVisible(string)
+    - void ResetMachineVisibility()
+
+    - void MachineIndicatorSelectVisible(string)
+    - void MachineIndicatorReturnVisible(string)
+    - void ResetMachineIndicatorVisibility()
+
+    - void CheckIfMachineNameIsAvailable()
+    - void CreateMachine()
+    - void ResetCreateMachine()
+    - void EditMachine()
+    - void ResetEditMachine()
+    - void DeleteMachine()
+    - void ResetDeleteMachine()
+    - void AddMachineIndicator()
+    - void ResetAddMachineIndicators()
+    - void RemoveMachineIndicator()
+    - void ResetRemoveMachineIndicators()
+    - void ClearMachine()
+
+    - void CheckIfMachineIndicatorNameIsAvailable()
+    - void UpdateSubCollections(object?, NotifyCollectionChangedEventArgs)
+    - void RefreshMachineIndicators()
+    - void CreateMachineIndicator()
+    - void ResetCreateMachineIndicator()
+    - void EditMachineIndicator()
+    - void ResetEditMachineIndicators()
+    - void DeleteMachineIndicator()
+    - void ResetDeleteMachineIndicator()
+    - void ClearMachineIndicator()
+
+    - void ResetAll()
+
+    - void UnloadPage()
+}
+
+CadastroViewModel --> SharedService
+CadastroViewModel --> Machine
+CadastroViewModel --> MachineIndicator
+CadastroViewModel --> Tipo
+CadastroViewModel --|> ReactiveObject
+
+class AvaliacaoViewModel {
+    - readonly SharedService sharedService
+
+    - Machine? _selectedMachine
+    - MachineIndicator? _selectedAmbientalIndicator
+    - MachineIndicator? _selectedSocialIndicator
+    - MachineIndicator? _selectedEconomicalIndicator
+
+    - bool _indicatorIsEnabled
+    - double? _indicatorValue
+
+    + Machine? SelectedMachine
+    + MachineIndicator? SelectedAmbientalIndicator
+    + MachineIndicator? SelectedSocialIndicator
+    + MachineIndicator? SelectedEconomicalIndicator
+    + bool IndicatorIsEnabled
+    + double? IndicatorValue
+
+    + ObservableCollection<Machine> Machines
+    + ObservableCollection<MachineIndicator> AmbientalMachineIndicators
+    + ObservableCollection<MachineIndicator> SocialMachineIndicators
+    + ObservableCollection<MachineIndicator> EconomicalMachineIndicators
+
+    + ReactiveCommand<Unit, Unit> SaveIndicatorCommand
+    + ReactiveCommand<Unit, Unit> ClearIndicatorCommand
+
+    + AvaliacaoViewModel(SharedService)
+
+    - void OnMachinesUpdated(object?, NotifyCollectionChangedEventArgs)
+    - void SaveIndicatorValue()
+    - void ClearSaveIndicatorValue()
+    - void ResetAll()
+
+    + void UnloadPage()
+}
+
+AvaliacaoViewModel --> SharedService
+AvaliacaoViewModel --> Machine
+AvaliacaoViewModel --> MachineIndicator
+AvaliacaoViewModel --|> ReactiveObject
+
+class AnaliseViewModel {
+    - readonly SharedService sharedService
+
+    - Machine? _selectedMachine
+    - MachineIndicator? _selectedIndicator
+
+    - string? _selectedMachineName
+    - string? _selectedIndicatorName
+
+    - bool _machineIndicatorDropDownVisible
+
+    - bool _stackPanelEditPointVisible
+    - bool _stackPanelNotEditPointVisible
+    - bool _editPointVisible
+
+    - DateTime? _selecteDate
+    - IEnumerable<ISeries> _series
+    - List<Axis>? _xAxes
+
+    - MachineIndicatorValue? _point
+
+    + Machine? SelectedMachine
+    + MachineIndicator? SelectedIndicator
+
+    + string? SelectedMachineName
+    + string? SelectedIndicatorName
+
+    + bool MachineIndicatorDropDownVisible
+    + bool StackPanelEditPointVisible
+    + bool StackPanelNotEditPointVisible
+    + bool EditPointVisible
+
+    + DateTime? SelecteDate
+    + IEnumerable<ISeries> Series
+    + List<Axis>? XAxes
+    + MachineIndicatorValue? Point
+
+    + ObservableCollection<Machine> Machines
+    + ObservableCollection<MachineIndicator> MachineIndicators
+    + ObservableCollection<MachineIndicator> MachineMachineIndicators
+
+    + ReactiveCommand<Unit, Unit> ClearCommand
+    + ReactiveCommand<MachineIndicatorValue, Unit> SaveEditedPointCommand
+
+    + ReactiveCommand<Unit, Unit> EditPointCommand
+    + ReactiveCommand<Unit, Unit> VoltarEditedPointCommand
+
+    + AnaliseViewModel(SharedService)
+
+    - void OnMachinesUpdated(object?, NotifyCollectionChangedEventArgs)
+    - void Clear()
+    - void ResetAll()
+    - List<ISeries> GetSeries(Machine, MachineIndicator, DateTime?, DateTime?)
+    - void EditPointEvent(IChartView, ChartPoint<MachineIndicatorValue, CircleGeometry, LabelGeometry>?)
+    - void SaveEditedPoint(MachineIndicatorValue)
+    - void EditPoint()
+    - void VoltarEditedPoint()
+
+    + void UnloadPage()
+}
+
+AnaliseViewModel --> SharedService
+AnaliseViewModel ..> Machine
+AnaliseViewModel ..> MachineIndicator
+AnaliseViewModel ..> MachineIndicatorValue
+AnaliseViewModel ..> DateTime
+AnaliseViewModel ..> ISeries
+AnaliseViewModel ..> Axis
+AnaliseViewModel ..> IChartView
+AnaliseViewModel ..> ChartPoint
+AnaliseViewModel ..> CircleGeometry
+AnaliseViewModel ..> LabelGeometry
+AnaliseViewModel --|> ReactiveObject
+' ---------- /ViewModels.SubViewModels ----------
+
+' --------------------------------------------- /Trife ---------------------------------------------
+
+@enduml

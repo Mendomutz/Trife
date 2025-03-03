@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Trife.ViewModels"
+        xmlns:local="using:Trife.Views.SubViews"
+        x:Class="Trife.Views.MainWindow"
+        Icon="/Assets/Icons/IFSC.ico"
+        Width="1000"
+        Height="500"
+        WindowStartupLocation="CenterScreen"
+        Title="{Binding Title}"
+        Padding="0,0,0,0"
+		CanResize="True">
+
+	<Grid Margin="0" ShowGridLines="False" ColumnDefinitions="*" RowDefinitions="Auto, *, Auto">
+
+		<Border Grid.Row="0" Margin="0,0,0,0" BorderBrush="Black" BorderThickness="1,1,1,0">
+			<Grid ColumnDefinitions="Auto, *" ShowGridLines="False" Background="DarkGreen">
+				<Image Source="/Assets/Icons/IFSC.ico" Grid.Column="0" Height="40" Margin="0,5,0,5"/>
+				<Label HorizontalAlignment="Stretch"
+					   VerticalAlignment="Stretch"
+					   HorizontalContentAlignment="Center"
+					   VerticalContentAlignment="Center"
+					   Grid.Column="1"
+					   FontSize="18"
+					   Content="Trife">
+				</Label>
+			</Grid>
+		</Border>
+
+		<Border Grid.Row="1" Margin="0,0,0,0" BorderBrush="Black" BorderThickness="1,1,1,0">
+			<Grid ShowGridLines="False" ColumnDefinitions="230, *">
+
+				<!--Botões laterais-->
+				<Border BorderBrush="Black" BorderThickness="0,0,1,0">
+					<StackPanel Grid.Column="0" Orientation="Vertical" Background="LightGray">
+						<StackPanel Margin="10,10,10,0">
+							<RadioButton Content="Cadastro"		FontSize="18" IsChecked="{Binding IsCadastroSelected}"/>
+							<RadioButton Content="Avaliação"	FontSize="18" IsChecked="{Binding IsAnaliseSelected}"/>
+							<RadioButton Content="Análise"		FontSize="18" IsChecked="{Binding IsAvaliacaoSelected}"/>
+							<!--
+							<RadioButton Content="Dimensão Ambiental" FontSize="18" IsChecked="{Binding IsAmbientalSelected}"/>
+							<RadioButton Content="Dimensão Social"    FontSize="18" IsChecked="{Binding IsSocialSelected}"/>
+							<RadioButton Content="Dimensão Econômica" FontSize="18" IsChecked="{Binding IsEconomicalSelected}"/>
+							-->
+						</StackPanel>
+					</StackPanel>
+				</Border>
+
+				<!--View selecionada-->
+				<ContentControl Grid.Column="1" Content="{Binding SelectedView}" Background="White"/>
+
+			</Grid>
+		</Border>
+
+		<!--Rodapé de mensagens-->
+		<Border Grid.Row="2" Margin="0,0,0,0" BorderBrush="Black" BorderThickness="1">
+			<TextBlock Background="#861b2d"
+					   Foreground="White"
+					   HorizontalAlignment="Stretch"
+					   VerticalAlignment="Center"
+					   Text="{Binding ErrorMessage}"
+					   MaxHeight="16"
+					   FontSize="14">
+			</TextBlock>
+		</Border>
+
+	</Grid>
+</Window>
